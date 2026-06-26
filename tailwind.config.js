@@ -11,7 +11,7 @@ module.exports = {
         // AIXORA Brand Palette
         brand: {
           DEFAULT: '#5a2b4e',   // Primary plum
-          dark:    '#3d1a34',   // Darker plum
+          dark:    '#521346',   // Darker plum
           light:   '#7a3d6e',   // Lighter plum
         },
         accent: {

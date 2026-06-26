@@ -140,3 +140,49 @@ h1, h2, h3 {
   .desktop-nav { display: none !important; }
   .mobile-nav  { display: block !important; }
 }
+
+/* ── Hero Responsive ── */
+@media (max-width: 640px) {
+  .hero-section {
+    min-height: 100svh !important;
+    padding-top: 75px !important;
+    padding-bottom: 32px !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .hero-content {
+    padding-top: 1rem !important;
+  }
+  .hero-badge {
+    font-size: 0.7rem !important;
+    padding: 5px 10px !important;
+    white-space: normal !important;
+    text-align: center !important;
+    max-width: 260px !important;
+  }
+  .hero-btns {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .hero-btns a {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  .hero-stats {
+    max-width: 100% !important;
+  }
+  .hero-h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.5 !important;
+    letter-spacing: -0.01em !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hero-section {
+    padding-top: 90px !important;
+  }
+  .hero-stats {
+    max-width: 420px !important;
+  }
+}

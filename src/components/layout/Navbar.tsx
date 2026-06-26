@@ -109,10 +109,10 @@ export default function Navbar() {
       {/* Logo */}
       <Link href="/" style={logoWrapStyle}>
         <img
-          src="/assets/AIXORA_logo.png"
+          src="/assets/AIXORA_Logo_White.png"
           alt="AIXORA Academy"
           style={{
-            height:  '38px',
+            height:  '80px',
             width:   'auto',
             objectFit: 'contain',
             // filter:  'brightness(0) invert(1)',
