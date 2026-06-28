@@ -8,27 +8,26 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // AIXORA Brand Palette
         brand: {
-          DEFAULT: '#5a2b4e',   // Primary plum
-          dark:    '#521346',   // Darker plum
-          light:   '#7a3d6e',   // Lighter plum
+          DEFAULT: '#661255',
+          dark:    '#4a0d3d',
+          light:   '#8a1a72',
         },
         accent: {
-          DEFAULT: '#c084fc',   // Soft lavender-purple
-          dark:    '#a855f7',   // Deeper purple
-          glow:    '#e9d5ff',   // Light glow
+          DEFAULT: '#c084fc',
+          dark:    '#a855f7',
+          glow:    '#e9d5ff',
         },
         surface: {
-          DEFAULT: '#0f0a0e',   // Near-black base
-          card:    '#1a1018',   // Card background
-          muted:   '#2d1a28',   // Muted dark plum
-          border:  '#3d2438',   // Border color
+          DEFAULT: '#0f0a0e',
+          card:    '#1a1018',
+          muted:   '#2d1a28',
+          border:  '#3d2438',
         },
         text: {
-          DEFAULT: '#f5f0f7',   // Off-white
-          muted:   '#b89ab2',   // Muted text
-          faint:   '#7a5a74',   // Very muted
+          DEFAULT: '#f5f0f7',
+          muted:   '#b89ab2',
+          faint:   '#7a5a74',
         },
       },
       fontFamily: {
@@ -36,28 +35,37 @@ module.exports = {
         body:    ['Inter', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
-        'gradient-brand': 'linear-gradient(135deg, #5a2b4e 0%, #3d1a34 50%, #1a0d18 100%)',
-        'gradient-accent': 'linear-gradient(135deg, #c084fc 0%, #a855f7 100%)',
-        'gradient-card': 'linear-gradient(145deg, #1a1018 0%, #2d1a28 100%)',
-        'hero-glow': 'radial-gradient(ellipse at 50% 0%, rgba(90,43,78,0.6) 0%, transparent 70%)',
+        'gradient-brand':  'linear-gradient(135deg, #661255 0%, #4a0d3d 100%)',
+        'gradient-card':   'linear-gradient(145deg, #1a1018 0%, #2d1a28 100%)',
+        'x-pattern': `repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(102,18,85,0.04) 40px, rgba(102,18,85,0.04) 41px), repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(102,18,85,0.04) 40px, rgba(102,18,85,0.04) 41px)`,
       },
       boxShadow: {
-        'brand': '0 0 30px rgba(90,43,78,0.4)',
+        'brand':  '0 0 30px rgba(102,18,85,0.4)',
         'accent': '0 0 20px rgba(192,132,252,0.3)',
-        'card': '0 4px 24px rgba(0,0,0,0.4)',
+        'card':   '0 4px 24px rgba(0,0,0,0.4)',
+        'glow':   '0 0 40px rgba(102,18,85,0.6)',
       },
       animation: {
-        'fade-up': 'fadeUp 0.6s ease-out forwards',
-        'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+        'fade-up':     'fadeUp 0.6s ease-out forwards',
+        'pulse-glow':  'pulseGlow 4s ease-in-out infinite',
+        'float':       'floatUp 6s ease-in-out infinite',
       },
       keyframes: {
         fadeUp: {
-          '0%': { opacity: '0', transform: 'translateY(24px)' },
+          '0%':   { opacity: '0', transform: 'translateY(24px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        glowPulse: {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(192,132,252,0.2)' },
-          '50%': { boxShadow: '0 0 40px rgba(192,132,252,0.5)' },
+        pulseGlow: {
+          '0%, 100%': { opacity: '0.8', transform: 'translateX(-50%) scale(1)'    },
+          '50%':      { opacity: '1',   transform: 'translateX(-50%) scale(1.05)' },
+        },
+        floatUp: {
+          '0%, 100%': { transform: 'translateY(0px)',   opacity: '0.4'  },
+          '50%':      { transform: 'translateY(-18px)', opacity: '0.75' },
+        },
+        heroFadeUp: {
+          'from': { opacity: '0', transform: 'translateY(22px)' },
+          'to':   { opacity: '1', transform: 'translateY(0)'    },
         },
       },
     },

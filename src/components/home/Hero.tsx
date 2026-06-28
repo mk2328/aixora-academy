@@ -38,304 +38,181 @@ function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
-// FIX: zero vertical padding so highlight never bleeds into adjacent lines
-const hl = (text: string) => (
-  <span style={{
-    background: 'rgba(90, 43, 78)',
-    color: '#e8d8f0',
-    padding: '0 0.28em',        // horizontal only — no vertical
-    borderRadius: '6px',
-    display: 'inline',
-    WebkitBoxDecorationBreak: 'clone',           // consistent rendering across browsers
-    boxDecorationBreak: 'clone' as any,
-
-  }}>{text}</span>
-);
-
-// FIX: fadeUp animation defined once, referenced by delay
 const fadeUpStyle = (delayMs: number): React.CSSProperties => ({
   animation: `heroFadeUp 0.7s ease ${delayMs}ms both`,
 });
 
 export default function Hero() {
   return (
-    <section className="hero-section" style={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-      overflow: 'hidden',
-      background: '#0f0a0e',
-      paddingTop: '80px',
-      paddingBottom: '48px',
-      paddingLeft: '24px',
-      paddingRight: '24px',
-      boxSizing: 'border-box',
-    }}>
+    <section
+      className="hero-section relative flex items-center justify-center overflow-hidden bg-surface box-border"
+      style={{ minHeight: '100vh', paddingTop: '80px', paddingBottom: '48px' }}
+    >
 
-      {/* Animated glow — top center */}
-      <div style={{
-        position: 'absolute',
-        top: '-15%',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: '800px',
-        height: '500px',
-        background: 'radial-gradient(ellipse, rgba(90,43,78,0.55) 0%, transparent 70%)',
-        pointerEvents: 'none',
-        animation: 'pulseGlow 4s ease-in-out infinite',
-      }} />
+      {/* Glow top center */}
+      <div className="absolute pointer-events-none animate-pulse-glow"
+        style={{
+          top: '-15%', left: '50%', transform: 'translateX(-50%)',
+          width: '800px', height: '500px',
+          background: 'radial-gradient(ellipse, rgba(102,18,85,0.55) 0%, transparent 70%)',
+          animation: 'pulseGlow 4s ease-in-out infinite',
+        }}
+      />
 
-      {/* Glow — bottom left */}
-      <div style={{
-        position: 'absolute',
-        bottom: '5%',
-        left: '-5%',
-        width: '350px',
-        height: '350px',
-        background: 'radial-gradient(ellipse, rgba(192,132,252,0.07) 0%, transparent 70%)',
-        pointerEvents: 'none',
-      }} />
+      {/* Glow bottom left */}
+      <div className="absolute pointer-events-none"
+        style={{
+          bottom: '5%', left: '-5%', width: '350px', height: '350px',
+          background: 'radial-gradient(ellipse, rgba(192,132,252,0.07) 0%, transparent 70%)',
+        }}
+      />
 
-      {/* Glow — right */}
-      <div style={{
-        position: 'absolute',
-        top: '20%',
-        right: '-5%',
-        width: '300px',
-        height: '300px',
-        background: 'radial-gradient(ellipse, rgba(90,43,78,0.16) 0%, transparent 70%)',
-        pointerEvents: 'none',
-      }} />
+      {/* Glow right */}
+      <div className="absolute pointer-events-none"
+        style={{
+          top: '20%', right: '-5%', width: '300px', height: '300px',
+          background: 'radial-gradient(ellipse, rgba(102,18,85,0.16) 0%, transparent 70%)',
+        }}
+      />
 
-      {/* X cross-hatch pattern */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        backgroundImage: `
-          repeating-linear-gradient(45deg,  transparent, transparent 40px, rgba(90,43,78,0.04) 40px, rgba(90,43,78,0.04) 41px),
-          repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(90,43,78,0.04) 40px, rgba(90,43,78,0.04) 41px)
-        `,
-        pointerEvents: 'none',
-      }} />
+      {/* X pattern */}
+      <div className="absolute inset-0 pointer-events-none bg-x-pattern" />
 
       {/* Floating particles */}
       {[
-        { top: '20%', left: '8%', size: 3, delay: '0s', dur: '6s' },
-        { top: '60%', left: '5%', size: 2, delay: '1s', dur: '8s' },
-        { top: '35%', right: '7%', size: 4, delay: '0.5s', dur: '7s' },
-        { top: '75%', right: '10%', size: 2, delay: '2s', dur: '9s' },
+        { top: '20%', left: '8%',   size: 3, delay: '0s',   dur: '6s' },
+        { top: '60%', left: '5%',   size: 2, delay: '1s',   dur: '8s' },
+        { top: '35%', right: '7%',  size: 4, delay: '0.5s', dur: '7s' },
+        { top: '75%', right: '10%', size: 2, delay: '2s',   dur: '9s' },
         { top: '15%', right: '20%', size: 2, delay: '1.5s', dur: '5s' },
-        { top: '80%', left: '20%', size: 3, delay: '3s', dur: '7s' },
+        { top: '80%', left: '20%',  size: 3, delay: '3s',   dur: '7s' },
       ].map((p, i) => (
-        <div key={i} style={{
-          position: 'absolute',
-          top: p.top,
-          left: (p as any).left,
-          right: (p as any).right,
-          width: `${p.size}px`,
-          height: `${p.size}px`,
-          borderRadius: '50%',
-          background: '#c084fc',
-          opacity: 0.4,
-          pointerEvents: 'none',
-          // FIX: floatUp animation now uses correct semicolon syntax in keyframes below
-          animation: `floatUp ${p.dur} ease-in-out ${p.delay} infinite`,
-        }} />
+        <div key={i} className="absolute rounded-full pointer-events-none"
+          style={{
+            top:        p.top,
+            left:       (p as any).left,
+            right:      (p as any).right,
+            width:      `${p.size}px`,
+            height:     `${p.size}px`,
+            background: '#c084fc',
+            opacity:    0.4,
+            animation:  `floatUp ${p.dur} ease-in-out ${p.delay} infinite`,
+          }}
+        />
       ))}
 
       {/* Main content */}
-      <div className="hero-content" style={{
-        position: 'relative',
-        zIndex: 1,
-        textAlign: 'center',
-        maxWidth: '860px',
-        width: '100%',
-        margin: '0 auto',
-      }}>
+      <div
+        className="hero-content relative z-10 text-center w-full mx-auto px-6"
+        style={{ maxWidth: '860px' }}
+      >
 
         {/* Badge */}
-        <div className="hero-badge" style={{
-          ...fadeUpStyle(100),
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '6px',
-          padding: '6px 16px',
-          borderRadius: '999px',
-          background: 'rgba(192,132,252,0.08)',
-          border: '1px solid rgba(192,132,252,0.25)',
-          marginBottom: 'clamp(1.2rem, 3vw, 1.75rem)',
-          fontSize: '0.82rem',
-          color: '#c084fc',
-          fontWeight: 500,
-          letterSpacing: '0.03em',
-        }}>
+        <div
+          className="hero-badge inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full
+                     bg-accent/8 border border-accent/25 text-accent
+                     text-[0.82rem] font-medium tracking-wide mb-7"
+          style={fadeUpStyle(100)}
+        >
           <Sparkles size={13} />
           Pakistan's First AI-Focused Learning Ecosystem
         </div>
 
         {/* Headline */}
-        <h1 className="hero-h1" style={{
-          ...fadeUpStyle(250),
-          fontFamily: 'Playfair Display, serif',
-          fontSize: 'clamp(1.7rem, 5.2vw, 4.4rem)',
-          fontWeight: 900,
-          lineHeight: 1.4,
-          color: '#f5f0f7',
-          marginBottom: '1.25rem',
-          letterSpacing: '-0.02em',
-
-        }}>
-          Learn {hl('AI.')}  Build the {hl('Future.')}
+        <h1
+          className="hero-h1 font-display font-black text-text tracking-tight mb-5"
+          style={{
+            ...fadeUpStyle(250),
+            fontSize:   'clamp(1.7rem, 5.2vw, 4.4rem)',
+            lineHeight: 1.4,
+          }}
+        >
+          Learn{' '}
+          <span className="bg-brand/80 text-accent px-1 rounded">AI.</span>
+          {' '}Build the{' '}
+          <span className="bg-brand/80 text-accent px-1 rounded">Future.</span>
           <br />
-          Lead with {hl('Confidence.')}
+          Lead with{' '}
+          <span className="bg-brand/80 text-accent px-1 rounded">Confidence.</span>
         </h1>
 
-        {/* Subheading — FIX: brighter color for better contrast */}
-        <p style={{
-          ...fadeUpStyle(400),
-          fontSize: 'clamp(0.93rem, 1.8vw, 1.08rem)',
-          color: '#c4a8bf',
-          lineHeight: 1.78,
-          maxWidth: '580px',
-          margin: '0 auto 2rem',
-        }}>
+        {/* Subheading */}
+        <p
+          className="text-text-muted leading-relaxed mx-auto mb-8"
+          style={{
+            ...fadeUpStyle(400),
+            fontSize:  'clamp(0.93rem, 1.8vw, 1.08rem)',
+            maxWidth:  '580px',
+            color:     '#c4a8bf',
+            lineHeight: 1.78,
+          }}
+        >
           AIXORA Academy is an AI-first learning ecosystem empowering students,
           graduates, and professionals with practical skills, mentorship, and
           real-world career opportunities.
         </p>
 
         {/* CTA Buttons */}
-        <div className="hero-btns" style={{
-          ...fadeUpStyle(550),
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '12px',
-          flexWrap: 'wrap',
-          marginBottom: '3rem',
-        }}>
-          <Link href="/courses" style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '7px',
-            padding: '13px 28px',
-            background: 'linear-gradient(135deg, #5a2b4e, #7a3d6e)',
-            color: '#f5f0f7',
-            textDecoration: 'none',
-            borderRadius: '10px',
-            fontSize: '0.95rem',
-            fontWeight: 600,
-            border: '1px solid rgba(192,132,252,0.3)',
-            boxShadow: '0 0 28px rgba(90,43,78,0.5)',
-            transition: 'transform 0.22s ease, box-shadow 0.22s ease',
-          }}
-            onMouseEnter={e => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 0 42px rgba(90,43,78,0.72)';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 0 28px rgba(90,43,78,0.5)';
-            }}>
+        <div
+          className="hero-btns flex items-center justify-center gap-3 flex-wrap mb-12"
+          style={fadeUpStyle(550)}
+        >
+          <Link
+            href="/courses"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl
+                       text-[0.95rem] font-semibold text-text no-underline
+                       bg-gradient-to-br from-brand to-brand-light
+                       border border-accent/30 shadow-brand
+                       hover:-translate-y-0.5 hover:shadow-glow
+                       transition-all duration-200"
+          >
             Explore Courses <ArrowRight size={16} />
           </Link>
 
-          <Link href="/community" style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '7px',
-            padding: '13px 28px',
-            background: 'transparent',
-            color: '#c084fc',
-            textDecoration: 'none',
-            borderRadius: '10px',
-            fontSize: '0.95rem',
-            fontWeight: 600,
-            border: '1px solid rgba(192,132,252,0.3)',
-            transition: 'background 0.22s ease, transform 0.22s ease',
-          }}
-            onMouseEnter={e => {
-              e.currentTarget.style.background = 'rgba(192,132,252,0.09)';
-              e.currentTarget.style.transform = 'translateY(-2px)';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.transform = 'translateY(0)';
-            }}>
+          <Link
+            href="/community"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl
+                       text-[0.95rem] font-semibold text-accent no-underline
+                       bg-transparent border border-accent/30
+                       hover:bg-accent/8 hover:-translate-y-0.5
+                       transition-all duration-200"
+          >
             Join Community
           </Link>
         </div>
 
-        {/* Stats — CountUp */}
-        <div className="hero-stats" style={{
-          ...fadeUpStyle(700),
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '1px',
-          background: 'rgba(90,43,78,0.3)',
-          border: '1px solid rgba(90,43,78,0.3)',
-          borderRadius: '16px',
-          overflow: 'hidden',
-          maxWidth: '500px',
-          margin: '0 auto',
-        }}>
+        {/* Stats */}
+        <div
+          className="hero-stats grid grid-cols-3 mx-auto overflow-hidden rounded-2xl border border-brand/30"
+          style={{
+            ...fadeUpStyle(700),
+            maxWidth:   '500px',
+            gap:        '1px',
+            background: 'rgba(102,18,85,0.3)',
+          }}
+        >
           {[
-            { icon: <Users size={20} />, target: 500, suffix: '+', label: 'Students' },
-            { icon: <BookOpen size={20} />, target: 20, suffix: '+', label: 'Courses' },
-            { icon: <Sparkles size={20} />, target: 10, suffix: '+', label: 'Workshops' },
+            { icon: <Users size={20} />,    target: 500, suffix: '+', label: 'Students'  },
+            { icon: <BookOpen size={20} />, target: 20,  suffix: '+', label: 'Courses'   },
+            { icon: <Sparkles size={20} />, target: 10,  suffix: '+', label: 'Workshops' },
           ].map((stat, i) => (
-            <div key={i} style={{
-              padding: '22px 12px',
-              background: 'rgba(15,10,14,0.85)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '5px',
-              transition: 'background 0.25s ease',
-            }}
-              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(90,43,78,0.22)')}
-              onMouseLeave={e => (e.currentTarget.style.background = 'rgba(15,10,14,0.85)')}>
-              <span style={{ color: '#c084fc' }}>{stat.icon}</span>
-              <span style={{
-                fontFamily: 'Playfair Display, serif',
-                fontSize: '1.65rem',
-                fontWeight: 700,
-                color: '#f5f0f7',
-              }}>
+            <div
+              key={i}
+              className="stat-box group"
+            >
+              <span className="text-accent">{stat.icon}</span>
+              <span className="font-display font-bold text-text text-[1.65rem]">
                 <CountUp target={stat.target} suffix={stat.suffix} />
               </span>
-              <span style={{
-                fontSize: '0.72rem',
-                color: '#7a5a74',
-                fontWeight: 500,
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
-              }}>{stat.label}</span>
+              <span className="text-text-faint text-[0.72rem] font-medium tracking-widest uppercase">
+                {stat.label}
+              </span>
             </div>
           ))}
         </div>
 
       </div>
 
-      {/* Keyframe animations — FIX: corrected floatUp syntax + added heroFadeUp */}
-      <style>{`
-        @keyframes pulseGlow {
-          0%, 100% { opacity: 0.8; transform: translateX(-50%) scale(1);    }
-          50%       { opacity: 1;   transform: translateX(-50%) scale(1.05); }
-        }
-        @keyframes floatUp {
-          0%, 100% { transform: translateY(0px);   opacity: 0.4; }
-          50%       { transform: translateY(-18px); opacity: 0.75; }
-        }
-        @keyframes heroFadeUp {
-          from { opacity: 0; transform: translateY(22px); }
-          to   { opacity: 1; transform: translateY(0);    }
-        }
-
-       
-      `}</style>
     </section>
   );
 }
