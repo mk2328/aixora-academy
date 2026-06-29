@@ -52,17 +52,14 @@ export default function Vision() {
             </div>
 
             {/* Label */}
-            <div className="badge-accent mb-3">Our Vision</div>
+            <div className="badge-accent mb-3">Our Promise</div>
 
             <h3 className="heading-md mb-3">
-                Pakistan's First AI-Powered Learning Ecosystem
+              Pakistan's First AI-Powered Learning Ecosystem
             </h3>
 
             <p className="text-text-muted text-[0.9rem] leading-[1.7] m-0">
-              To build Pakistan's leading AI-powered learning ecosystem that
-              empowers individuals through technology, innovation, and practical
-              education — where every learner has access to quality education,
-              mentorship, and real career opportunities.
+              At AIXORA Academy, we don't simply teach technology. We inspire confidence, develop skills, and nurture innovation. We aim to build a strong technology community where learning never stops—a platform where students become professionals, professionals become mentors, and mentors inspire the next generation.
             </p>
           </div>
 
@@ -84,10 +81,7 @@ export default function Vision() {
             </h3>
 
             <p className="text-text-muted text-[0.9rem] leading-[1.7] m-0">
-              To make high-quality technology education accessible, practical,
-              and career-oriented while fostering a strong community of learners,
-              educators, developers, designers, and innovators ready for an
-              AI-driven world.
+              We were created with one clear vision: to bridge the gap between traditional education and the real demands of the technology industry. We equip students with practical, industry-ready skills that empower them to build successful careers, launch freelance journeys, secure internships and jobs, or even start their own businesses.
             </p>
           </div>
         </div>

@@ -133,7 +133,7 @@ npx vercel
 ## 📋 Development Phases
 
 ### Phase 1 — MVP (Month 1-2)
-- [ ] Landing page (Hero, About, Programs, Team)
+- [ ] Landing page (Hero, Vision, Programs, Team)
 - [ ] Auth (Login, Register, Google OAuth)
 - [ ] Course listing + detail page
 - [ ] Video player (YouTube embed)
