@@ -31,6 +31,10 @@
 html {
   scroll-behavior: smooth;
 }
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
 
 body {
   background-color: var(--surface);
@@ -360,3 +364,10 @@ h3 {
 }
 
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
